@@ -6,7 +6,7 @@ using namespace std;
 
 bool comparePairs(pair<int,int> a, pair<int,int> b)
 {
-    return a.first < b.second;
+    return a.first < b.first;
 }
 
 vector<pair<int,int>> mergeIntervals(vector<pair<int,int>>& pairs)
