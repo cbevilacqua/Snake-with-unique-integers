@@ -41,35 +41,35 @@ int findLongestIntervalLength(vector<pair<int,int>>& intervals)
 
 int findLongestSnake(vector<vector<int>>& matrix)
 {
-	int width = matrix.size();
-	int height = matrix[0].size();
+    int width = matrix.size();
+    int height = matrix[0].size();
 
-	vector<pair<int,int>> pairs;
+    vector<pair<int,int>> pairs;
 
-	for (int i = 0; i < width; i++)
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
 	{
-		for (int j = 0; j < height; j++)
-		{
-			if ((i-1) >= 0 && abs(matrix[i][j]-matrix[i-1][j]) == 1)
-			{
+	    if ((i-1) >= 0 && abs(matrix[i][j]-matrix[i-1][j]) == 1)
+	    {
                 // want all pairs to have lowest integer value as the 'first' data member
                 if (matrix[i][j] < matrix[i-1][j])
-				    pairs.push_back(pair<int,int>(matrix[i][j], matrix[i-1][j]));
+		    pairs.push_back(pair<int,int>(matrix[i][j], matrix[i-1][j]));
                 else
                     pairs.push_back(pair<int,int>(matrix[i-1][j], matrix[i][j]));
-			}
+            }
 
-			if ((j-1) >= 0 && abs(matrix[i][j]-matrix[i][j-1]) == 1)
-			{
-				if (matrix[i][j] < matrix[i][j-1])
-				    pairs.push_back(pair<int,int>(matrix[i][j], matrix[i][j-1]));
+            if ((j-1) >= 0 && abs(matrix[i][j]-matrix[i][j-1]) == 1)
+	    {
+		if (matrix[i][j] < matrix[i][j-1])
+		    pairs.push_back(pair<int,int>(matrix[i][j], matrix[i][j-1]));
                 else
                     pairs.push_back(pair<int,int>(matrix[i][j-1], matrix[i][j]));
-			}
-		}
-	}
+	    }
+        }
+    }
 
-	sort(pairs.begin(), pairs.end(), comparePairs);
+    sort(pairs.begin(), pairs.end(), comparePairs);
 
     auto sortedIntervals = mergeIntervals(pairs);
 
@@ -80,7 +80,7 @@ int main()
 {
 	vector < vector < int > > matrix(5);
 	for (int i = 0; i < 5; i++)
-		matrix[i].resize(4);
+	    matrix[i].resize(4);
 	int a[4] = {9,10,12,13};
 	matrix[0].assign(a, a+4);
 	int b[4] = {8,7,6,5};
